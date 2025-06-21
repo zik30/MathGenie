@@ -1,10 +1,6 @@
 import type { FC } from 'react';
+import { TestIntroduction } from 'widgets/test';
 
 export const TestsPage: FC = () => {
-    return (
-        <div>
-            <h1>Tests Page</h1>
-            <p>This is the tests page where you can view and manage tests.</p>
-        </div>
-    );
+    return <TestIntroduction />;
 };

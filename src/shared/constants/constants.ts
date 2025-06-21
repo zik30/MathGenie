@@ -3,5 +3,7 @@ export const routes = {
     subjects: '/subjects',
     questions: '/questions',
     tests: '/tests',
+    test: '/test',
     profile: '/profile',
+    login: '/login',
 };

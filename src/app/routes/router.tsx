@@ -2,9 +2,10 @@ import { routes } from 'shared/constants/constants';
 import { Layout } from '../layout/Layout';
 import { createBrowserRouter } from 'react-router-dom';
 import { AiQuestionsPage } from 'pages/aiQuestions';
-import { TestsPage } from 'pages/testsPage';
 import { HomePage } from 'pages/home';
+import { LoginPage } from 'pages/loginPage';
 import { ProfilePage } from 'pages/profile';
+import { TestsPage } from 'pages/testsPage';
 
 export const router = () =>
     createBrowserRouter([
@@ -24,7 +25,11 @@ export const router = () =>
                     element: <AiQuestionsPage />,
                 },
                 {
-                    path: routes.tests,
+                    path: routes.login,
+                    element: <LoginPage />,
+                },
+                {
+                    path: routes.test,
                     element: <TestsPage />,
                 },
                 {
