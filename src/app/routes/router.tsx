@@ -2,6 +2,9 @@ import { routes } from 'shared/constants/constants';
 import { Layout } from '../layout/Layout';
 import { createBrowserRouter } from 'react-router-dom';
 import { AiQuestionsPage } from 'pages/AiQuestions';
+import { TestsPage } from 'pages/testsPage';
+import { HomePage } from 'pages/home';
+import { ProfilePage } from 'pages/profile';
 
 export const router = () =>
     createBrowserRouter([
@@ -10,7 +13,7 @@ export const router = () =>
             children: [
                 {
                     path: routes.home,
-                    element: <div>Home</div>,
+                    element: <HomePage />,
                 },
                 {
                     path: routes.subjects,
@@ -19,6 +22,14 @@ export const router = () =>
                 {
                     path: routes.questions,
                     element: <AiQuestionsPage />,
+                },
+                {
+                    path: routes.tests,
+                    element: <TestsPage />,
+                },
+                {
+                    path: routes.profile,
+                    element: <ProfilePage />,
                 },
             ],
         },
