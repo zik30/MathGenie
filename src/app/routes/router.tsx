@@ -1,7 +1,7 @@
 import { routes } from 'shared/constants/constants';
 import { Layout } from '../layout/Layout';
 import { createBrowserRouter } from 'react-router-dom';
-import { AiQuestionsPage } from 'pages/AiQuestions';
+import { AiQuestionsPage } from 'pages/aiQuestions';
 import { TestsPage } from 'pages/testsPage';
 import { HomePage } from 'pages/home';
 import { ProfilePage } from 'pages/profile';
