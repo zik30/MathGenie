@@ -1,15 +1,46 @@
-import { useState, type FC } from 'react';
+import { useEffect, useState, type FC } from 'react';
+import { useAuthStore } from 'widgets/login/store/useAuthStore';
 
 export const AiQuestionsPage: FC = () => {
+    const { refreshToken } = useAuthStore();
     const [question, setQuestion] = useState('');
     const [response, setResponse] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [suggestions] = useState([
-        'Как решить квадратное уравнение x² - 5x + 6 = 0?',
-        'Объясните теорему Пифагора с примером',
-        'Что такое производная и как её найти?',
-        'Как вычислить площадь треугольника?',
-    ]);
+    const [suggestions, setSuggestions] = useState([]);
+    const [suggestionsLoading, setSuggestionsLoading] = useState(false);
+
+    useEffect(() => {
+        const fetchSuggestions = async () => {
+            setSuggestionsLoading(true);
+            try {
+                const res = await fetch(
+                    'https://mathgenie-server.onrender.com/ai/top-questions',
+                    {
+                        method: 'GET',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            Authorization: `Bearer ${refreshToken}`,
+                        },
+                    },
+                );
+
+                if (!res.ok)
+                    throw new Error('Ошибка при загрузке популярных вопросов');
+
+                const data = await res.json();
+                setSuggestions(data || []);
+            } catch (error) {
+                console.error(
+                    'Ошибка при получении популярных вопросов:',
+                    error,
+                );
+            } finally {
+                setSuggestionsLoading(false);
+            }
+        };
+
+        fetchSuggestions();
+    }, [refreshToken]);
 
     const handleSubmit = async () => {
         if (!question.trim()) return;
@@ -17,11 +48,12 @@ export const AiQuestionsPage: FC = () => {
 
         try {
             const res = await fetch(
-                'https://mathgenie-server.onrender.com/api/ask/ai',
+                'https://mathgenie-server.onrender.com/ai/ask',
                 {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
+                        Authorization: `Bearer ${refreshToken}`,
                     },
                     body: JSON.stringify({ question }),
                 },
@@ -123,17 +155,23 @@ export const AiQuestionsPage: FC = () => {
                             Нажмите на вопрос, чтобы использовать его
                         </p>
                         <div className="space-y-2">
-                            {suggestions.map((suggestion, index) => (
-                                <button
-                                    key={index}
-                                    onClick={() =>
-                                        handleSuggestionClick(suggestion)
-                                    }
-                                    className="w-full text-left border rounded px-3 py-2 text-sm hover:bg-gray-100"
-                                >
-                                    {suggestion}
-                                </button>
-                            ))}
+                            {suggestionsLoading ? (
+                                <p className="text-sm text-gray-400">
+                                    Загрузка...
+                                </p>
+                            ) : (
+                                suggestions.map(({ question, id }) => (
+                                    <button
+                                        key={id}
+                                        onClick={() =>
+                                            handleSuggestionClick(question)
+                                        }
+                                        className="w-full text-left border rounded px-3 py-2 text-sm hover:bg-gray-100"
+                                    >
+                                        {question}
+                                    </button>
+                                ))
+                            )}
                         </div>
                     </div>
 
