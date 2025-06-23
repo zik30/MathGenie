@@ -1,4 +1,5 @@
-import { useMutation, useQuery } from '@tanstack/react-query';
+import { useQuery, useMutation } from '@tanstack/react-query';
+import { requester } from '../api/requester';
 
 interface AskAiPayload {
     question: string;
@@ -20,21 +21,16 @@ interface TopQuestion {
 export const useAskAiMutation = (accessToken: string) =>
     useMutation<AiAnswer, Error, AskAiPayload>({
         mutationFn: async ({ question }) => {
-            const res = await fetch(
-                'https://mathgenie-server.onrender.com/ai/ask',
+            const res = await requester.post(
+                '/ai/ask',
+                { question },
                 {
-                    method: 'POST',
                     headers: {
-                        'Content-Type': 'application/json',
                         Authorization: `Bearer ${accessToken}`,
                     },
-                    body: JSON.stringify({ question }),
                 },
             );
-
-            if (!res.ok) throw new Error('Ошибка при получении ответа от AI');
-
-            return res.json();
+            return res.data;
         },
     });
 
@@ -42,19 +38,12 @@ export const useTopQuestionsQuery = (accessToken: string) =>
     useQuery<TopQuestion[]>({
         queryKey: ['top-questions'],
         queryFn: async () => {
-            const res = await fetch(
-                'https://mathgenie-server.onrender.com/ai/top-questions',
-                {
-                    headers: {
-                        Authorization: `Bearer ${accessToken}`,
-                    },
+            const res = await requester.get('/ai/top-questions', {
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
                 },
-            );
-
-            if (!res.ok)
-                throw new Error('Ошибка при загрузке популярных вопросов');
-
-            return res.json();
+            });
+            return res.data;
         },
         enabled: !!accessToken,
     });

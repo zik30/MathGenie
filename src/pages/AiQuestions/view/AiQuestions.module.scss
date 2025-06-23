@@ -1,0 +1,163 @@
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 32px;
+
+    h1 {
+        font-size: 2rem;
+        background: linear-gradient(to right, #2563eb, #9333ea);
+        margin-bottom: 8px;
+    }
+
+    p {
+        color: #555;
+        font-size: 1.1rem;
+    }
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.leftColumn {
+    flex: 1 1 60%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.rightColumn {
+    flex: 1 1 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 16px;
+    background: #fff;
+
+    h2 {
+        font-size: 1.2rem;
+        margin-bottom: 8px;
+    }
+
+    textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        resize: none;
+        border-radius: 6px;
+        border: 1px solid #ccc;
+        margin-bottom: 12px;
+    }
+
+    button {
+        padding: 10px;
+        width: 100%;
+        background: linear-gradient(to right, #2563eb, #9333ea);
+        color: white;
+        font-weight: 600;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+
+        &:disabled {
+            background: #bbb;
+            cursor: not-allowed;
+        }
+    }
+}
+
+.subtext {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+.suggestions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+
+    button {
+        background: #9333ea;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        padding: 10px;
+        text-align: left;
+        cursor: pointer;
+        color: white;
+    }
+}
+
+.responseTitle {
+    color: #d97706;
+    margin-bottom: 8px;
+}
+
+.response {
+    white-space: pre-wrap;
+    color: #333;
+    line-height: 1.6;
+    font-size: 1rem;
+}
+
+.features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+
+    li {
+        margin-bottom: 6px;
+    }
+}
+
+.tipCard {
+    background: linear-gradient(to bottom right, #eef2ff, #f5f3ff);
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+
+    .icon {
+        background: linear-gradient(to bottom right, #2563eb, #9333ea);
+        width: 48px;
+        height: 48px;
+        border-radius: 9999px;
+        margin: 0 auto 8px;
+        font-size: 1.5rem;
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    h3 {
+        font-size: 1rem;
+        margin-bottom: 6px;
+    }
+
+    p {
+        font-size: 0.9rem;
+        color: #555;
+    }
+}
+@media (max-width: 768px) {
+    .grid {
+        flex-direction: column;
+    }
+
+    .leftColumn,
+    .rightColumn {
+        flex: 1 1 100%;
+    }
+}
