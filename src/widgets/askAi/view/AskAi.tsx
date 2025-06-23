@@ -13,7 +13,6 @@ export const AskAi: FC = () => {
     const { data, isFetching, error, refetch } = useAskAiQuery(currentQuestion);
     const { data: popularQuestions, isLoading: isPopularLoading } =
         usePopularQuestionsQuery();
-
     const handleInput = (e: ChangeEvent<HTMLTextAreaElement>) => {
         setQuestion(e.target.value);
     };
