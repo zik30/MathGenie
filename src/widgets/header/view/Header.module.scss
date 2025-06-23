@@ -7,7 +7,8 @@
     align-items: center;
     padding-left: 70px;
     padding-right: 70px;
-    background-color: #fff;
+    background-color: $white;
+    border: 1px solid $border;
 
     .logoWrapper {
         height: 38px;
@@ -31,21 +32,28 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            gap: 8px;
+            gap: 15px;
             height: 35px;
             padding-left: 10px;
             padding-right: 10px;
             border-radius: 7px;
-            transition: 0.1s ease-in;
+            transition: 0.2s ease-in;
 
             &:hover {
-                background-color: rgb(236, 236, 236);
+                background-color: $white-hover;
             }
 
             &.active {
-                background-color: #17a7ef;
-                color: white;
+                background: $gradient;
+                color: $white !important;
+                p {
+                    color: $white;
+                }
             }
+        }
+
+        .button {
+            border: 1px solid $border;
         }
     }
 }

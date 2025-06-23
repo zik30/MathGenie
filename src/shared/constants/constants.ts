@@ -8,4 +8,5 @@ export const routes = {
     test: '/test',
     profile: '/profile',
     login: '/login',
+    testMore: '/test/:testId',
 };

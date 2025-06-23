@@ -1,10 +1,10 @@
 import { useState, type FC } from 'react';
 import styles from './Header.module.scss';
-import { Calculator, LogIn, MessageSquare, User } from 'lucide-react';
+import { Calculator, LogIn, MessageSquare } from 'lucide-react';
 import logo from 'shared/assets/images/mathGenieLogo.png';
 import classNames from 'classnames';
 import { useAuthStore } from 'widgets/login/store/useAuthStore';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Typography } from 'shared/ui';
 
 export const Header: FC = () => {
@@ -19,17 +19,22 @@ export const Header: FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.logoWrapper}>
-                <img src={logo} alt="mathGenie LOGO" />
-            </div>
+            <Link to={'/'}>
+                <div
+                    onClick={() => setActive(null)}
+                    className={styles.logoWrapper}
+                >
+                    <img src={logo} alt="mathGenie LOGO" />
+                </div>
+            </Link>
             <div className={styles.routes}>
                 <div
                     onClick={() => handleClick('test')}
                     className={classNames(styles.item, {
-                        [styles.active]: active === 'tests',
+                        [styles.active]: active === 'test',
                     })}
                 >
-                    <Calculator width={15} />
+                    <Calculator width={17} />
                     <Typography variant="base">Тесты</Typography>
                 </div>
                 <div
@@ -38,7 +43,7 @@ export const Header: FC = () => {
                         [styles.active]: active === 'questions',
                     })}
                 >
-                    <MessageSquare width={15} />
+                    <MessageSquare width={17} />
                     <Typography variant="base">Вопросы ИИ</Typography>
                 </div>
                 {isAuth && (
@@ -48,25 +53,27 @@ export const Header: FC = () => {
                             [styles.active]: active === 'profile',
                         })}
                     >
-                        <User width={15} />
                         <Typography variant="base">
                             Привет, {username}
                         </Typography>
                     </div>
                 )}
                 {isAuth ? (
-                    <div onClick={logout} className={classNames(styles.item)}>
-                        <LogIn width={15} />
+                    <div
+                        onClick={logout}
+                        className={classNames(styles.item, styles.button)}
+                    >
+                        <LogIn width={17} />
                         <Typography variant="base">Выйти</Typography>
                     </div>
                 ) : (
                     <div
                         onClick={() => handleClick('login')}
-                        className={classNames(styles.item, {
+                        className={classNames(styles.item, styles.button, {
                             [styles.active]: active === 'login',
                         })}
                     >
-                        <LogIn width={15} />
+                        <LogIn width={17} />
                         <Typography variant="base">Войти</Typography>
                     </div>
                 )}

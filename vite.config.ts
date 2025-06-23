@@ -10,6 +10,17 @@ export default defineConfig({
             widgets: '/src/widgets',
             pages: '/src/pages',
             features: '/src/features',
+            entities: '/src/entities',
+        },
+    },
+
+    css: {
+        preprocessorOptions: {
+            scss: {
+                additionalData: `
+          @use "app/styles/forward.scss" as *;
+        `,
+            },
         },
     },
 });
