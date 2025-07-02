@@ -3,12 +3,21 @@
     text-align: center;
     background: #f8fafc;
 }
+
 .inner {
     display: flex;
     justify-content: center;
     gap: 40px;
     margin-top: 4rem;
     width: 100%;
+
+    @include Tablet {
+        gap: 25px;
+    }
+
+    @include Mobile {
+        gap: 10px;
+    }
 }
 
 .title {
@@ -24,6 +33,7 @@
     flex-direction: column;
     text-align: left;
 }
+
 .inputBlock {
     border: 2px solid #e5e7eb;
     background: #fff;
@@ -34,13 +44,24 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
+
+    @include Mobile {
+        gap: 10px;
+    }
 }
+
 .inputTitle {
     display: flex;
     gap: 10px;
     align-items: center;
     margin-bottom: 8px;
+
+    @include Mobile {
+        gap: 6px;
+        margin-bottom: 4px;
+    }
 }
+
 .input {
     border: 1px solid #e2e8f0;
     padding: 12px;
@@ -49,12 +70,25 @@
     font-size: 16px;
     resize: vertical;
     background: #f8fafc;
+
+    @include Tablet {
+        min-height: 60px;
+        font-size: 14px;
+    }
+
+    @include Mobile {
+        padding: 8px;
+        min-height: 40px;
+        font-size: 12px;
+    }
 }
+
 .input:focus {
     border-color: #9333ea;
     outline: none;
     background: #fff;
 }
+
 .answerBlock {
     margin-top: 32px;
     background: #fff;
@@ -63,7 +97,21 @@
     text-align: left;
     border: 2px solid #e5e7eb;
     position: relative;
+
+    @include Tablet {
+        padding: 16px;
+        margin-top: 18px;
+        border-radius: 8px;
+    }
+
+    @include Mobile {
+        border: 2px solid #e5e7eb;
+        padding: 10px;
+        margin-top: 14px;
+        border-radius: 4px;
+    }
 }
+
 .answerTitle {
     display: flex;
     align-items: center;
@@ -72,23 +120,53 @@
     font-weight: 700;
     color: #f59e42;
     margin-bottom: 18px;
+    @include Tablet {
+        font-size: 16px;
+    }
+    @include Mobile {
+        font-size: 12px;
+        font-weight: 400;
+    }
 }
+
 .answerIcon {
     font-size: 22px;
     color: #fbbf24;
     margin-right: 4px;
+    @include Tablet {
+        font-size: 16px;
+    }
+    @include Mobile {
+        font-size: 12px;
+    }
 }
+
 .answerContent {
     font-size: 17px;
     color: #1e293b;
     line-height: 1.7;
     white-space: pre-line;
+    @include Tablet {
+        font-size: 14px;
+        line-height: 1.2;
+    }
+    @include Mobile {
+        font-size: 12px;
+        line-height: 1;
+    }
 }
+
 .toolsBlock {
     width: 40%;
     display: flex;
     flex-direction: column;
     gap: 24px;
+    @include Tablet {
+        gap: 18px;
+    }
+    @include Mobile {
+        gap: 12px;
+    }
 }
 
 .popularQuestions {
@@ -100,27 +178,59 @@
     flex-direction: column;
     gap: 20px;
     text-align: left;
+    @include Tablet {
+        gap: 16px;
+        padding: 20px 18px;
+        border-radius: 10px;
+    }
+    @include Mobile {
+        gap: 12px;
+        padding: 14px 12px;
+        border-radius: 4px;
+    }
 }
+
 .popularTitle {
     display: flex;
     gap: 15px;
+    @include Mobile {
+        gap: 8px;
+    }
 }
+
 .questionsList {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 12px;
+    @include Tablet {
+        gap: 8px;
+    }
+    @include Mobile {
+        gap: 4px;
+    }
 }
+
 .questionItem {
     width: 100%;
 }
+
 .noQuestions {
     display: flex;
     justify-content: center;
     align-items: center;
     margin-top: 15px;
     font-size: 20px;
+    @include Tablet {
+        font-size: 16px;
+        margin-top: 12px;
+    }
+    @include Mobile {
+        font-size: 14px;
+        margin-top: 8px;
+    }
 }
+
 .questionItem button {
     width: 100%;
     background: #f8fafc;
@@ -135,7 +245,16 @@
     transition:
         background 0.2s,
         border 0.2s;
+    @include Tablet {
+        padding: 8px 12px;
+        font-size: 14px;
+    }
+    @include Mobile {
+        padding: 8px 10px;
+        font-weight: 400;
+    }
 }
+
 .questionItem button:hover {
     background: $gradient-hover;
     color: #fff;
@@ -150,7 +269,17 @@
     flex-direction: column;
     gap: 18px;
     border: 2px solid #e5e7eb;
+    @include Tablet {
+        padding: 20px 18px 18px 18px;
+        gap: 14px;
+    }
+    @include Mobile {
+        padding: 16px 12px 12px 12px;
+        gap: 10px;
+        border: 1px;
+    }
 }
+
 .aiFeaturesTitle {
     font-size: 20px;
     font-weight: 700;
@@ -158,28 +287,53 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    @include Tablet {
+        font-size: 16px;
+        font-weight: 500;
+        gap: 6px;
+    }
+    @include Mobile {
+        gap: 4px;
+        font-size: 14px;
+        margin-bottom: 6px;
+        font-weight: 400;
+    }
 }
+
 .featuresList {
     list-style: none;
     display: flex;
     flex-direction: column;
     gap: 10px;
+    @include Tablet {
+        gap: 6px;
+    }
+    @include Mobile {
+        gap: 4px;
+    }
 }
+
 .featureItem {
     display: flex;
     align-items: center;
     gap: 8px;
+    @include Mobile {
+        gap: 4px;
+    }
 }
 
 .equation {
     background: #3b82f6;
 }
+
 .geometry {
     background: #a855f7;
 }
+
 .stats {
     background: #10b981;
 }
+
 .analysis {
     background: #f59e42;
 }
@@ -194,7 +348,14 @@
     margin-right: 8px;
     animation: spin 1s linear infinite;
     vertical-align: middle;
+    @include Tablet {
+        margin-right: 6px;
+    }
+    @include Mobile {
+        margin-right: 4px;
+    }
 }
+
 @keyframes spin {
     to {
         transform: rotate(360deg);
